@@ -48,7 +48,7 @@ const GlobalInformation = (props: any) => {
   const { loading, error, data } = useQuery(getUserInfo);
 
   if (loading) return <LinearProgress />;
-
+  if (error) return <h1>{error}</h1>
   return (
     <>
       <div className={classes.root}>
