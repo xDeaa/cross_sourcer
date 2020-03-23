@@ -7,19 +7,21 @@ import {
   Route,
 } from "react-router-dom"
 
-//import './App.css';
+import './App.css';
 import User from './pages/User'
 
-console.log(process.env);
-
-const client = new ApolloClient({
-  uri: 'https://api.github.com/graphql',
-  headers: {
-    "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`
-  },
-});
-
 function App() {
+  if(!process.env.REACT_APP_TOKEN) {
+    return <h1>You must enter a token</h1>
+  }
+
+  const client = new ApolloClient({
+    uri: 'https://api.github.com/graphql',
+    headers: {
+      "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`
+    },
+  });
+  
   return (
     <ApolloProvider client={client}>
       <Router>
